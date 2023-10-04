@@ -6,6 +6,12 @@ html {
 p {
     white-space: break-spaces;
 }
+hr {
+    max-width: 1440px;
+    background-color: #EE7F43;
+    height: 1px;
+    border: none;
+}
 
 .row {
     max-width: 1440px;
@@ -174,7 +180,7 @@ figure {
     text-align: center;
 }
 
-.detailoeuvre h1,
+.detailoeuvre h1, .panier h1,
 .detailoeuvre h2 {
     color: #000;
     text-align: center;
@@ -278,3 +284,40 @@ article > div > div.price > p {
     font-weight: 400;
     line-height: normal;
 }
+
+#carticon a {
+    text-decoration: none;
+}
+#carticon span {
+    background-color: #ee7f43bd;
+    color: #fff;
+    padding: 8px;
+    font-size: 150%;
+    border-radius: 100%;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: -30px;
+    left: -30px;
+}
+
+.form-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+.form-container div {
+    display: flex;
+    flex-direction: column;
+}
+form input[type="email"] {
+    grid-column: span 1;
+}
+.form-submit {
+    grid-column: span 2;
+    text-align: center;
+}
+

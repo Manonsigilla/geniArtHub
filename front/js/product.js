@@ -62,5 +62,8 @@ buy.addEventListener("click", () => {
             productInLocalStorage.push(optionsProduct)
         }
         localStorage.setItem("product", JSON.stringify(productInLocalStorage))
+        numberItem()
+    } else {
+        alert('Vous avez commandé trop d\'exemplaire ou un nombre négatif')
     }
 })

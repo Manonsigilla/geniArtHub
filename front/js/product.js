@@ -53,7 +53,7 @@ buy.addEventListener("click", () => {
     // console.log(formatRecherche)
     const isProductExist = productInLocalStorage.findIndex(item => item.productId === optionsProduct.productId && item.format === optionsProduct.format)
 
-    // if(isProductExist.quantity < 100 && isProductExist.quantity > 0){
+    if(optionsProduct.quantity < 100 && optionsProduct.quantity > 0){
         // s'il y a un produit dans le local storage
         if(isProductExist !== -1){
             isProductExist.quantity += parseInt(quantity)
@@ -62,5 +62,5 @@ buy.addEventListener("click", () => {
             productInLocalStorage.push(optionsProduct)
         }
         localStorage.setItem("product", JSON.stringify(productInLocalStorage))
-    // }
+    }
 })

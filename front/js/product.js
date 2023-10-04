@@ -45,18 +45,22 @@ const buy = document.querySelector(".button-buy")
 buy.addEventListener("click", () => {
     const optionsProduct = {
         productId : id,
-        quantity : document.querySelector('#quantity').value,
+        quantity : parseInt(document.querySelector('#quantity').value),
         format : document.querySelector('#format').value
     }
-    let productInLocalStorage = JSON.parse(localStorage.getItem("product"))
-    // s'il y a un produit dans le local storage
-    if(productInLocalStorage){
-        productInLocalStorage.push(optionsProduct)
+
+    let productInLocalStorage = JSON.parse(localStorage.getItem("product")) || []
+    // console.log(formatRecherche)
+    const isProductExist = productInLocalStorage.findIndex(item => item.productId === optionsProduct.productId && item.format === optionsProduct.format)
+
+    // if(isProductExist.quantity < 100 && isProductExist.quantity > 0){
+        // s'il y a un produit dans le local storage
+        if(isProductExist !== -1){
+            isProductExist.quantity += parseInt(quantity)
+            productInLocalStorage[isProductExist].quantity += optionsProduct.quantity
+        } else { // s'il n'y a pas de produit dans le local storage
+            productInLocalStorage.push(optionsProduct)
+        }
         localStorage.setItem("product", JSON.stringify(productInLocalStorage))
-    } else { // s'il n'y a pas de produit dans le local storage
-        productInLocalStorage = []
-        productInLocalStorage.push(optionsProduct)
-        console.log(productInLocalStorage)
-        localStorage.setItem("product", JSON.stringify(productInLocalStorage))
-    }
+    // }
 })

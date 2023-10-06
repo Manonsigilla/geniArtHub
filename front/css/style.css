@@ -397,3 +397,6 @@ form input[type="submit"] {
 .total p {
     text-align: end;
 }
+dialog h2 {
+    text-align: center;
+}

@@ -24,6 +24,9 @@ async function prixTotal(){
     totalPrice = Math.round(totalPrice * 100) / 100
     total.textContent = `${totalQuantity} article(s) dans votre panier pour un total de ${totalPrice} €`
 }
+if (productInLocalStorage.length === 0) {
+    document.querySelector('.contenuPanier').innerText = "Votre panier est vide, veuillez ajouter au moins un article"
+}
 if(productInLocalStorage.length > 0){
     productInLocalStorage.forEach(async (el) => {
         const recup = await fetch(`http://localhost:3000/api/products/${el.productId}`)

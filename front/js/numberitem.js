@@ -13,6 +13,9 @@ function numberItem(){
         const quantity = cart.reduce((acc, el) => acc + el.quantity, 0)
         document.querySelector('#carticon span').style.visibility = "visible"
         document.querySelector('#carticon span').textContent = quantity
-    }
+        document.querySelector('#carticon span').style.display = "flex"
+        return
+    } 
+    document.querySelector('#carticon span').style.display = "none";
 }
 numberItem()

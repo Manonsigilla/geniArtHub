@@ -1,11 +1,8 @@
 let productInLocalStorage = JSON.parse(localStorage.getItem("product"))
-// on initialise la variable prixTotal à 0
-let Totalprice = 0
-let totalQuantity = 0
 
 // on actualise le prix total en indiquant le nombre d'articles en quantité commandée et le prix total
 // fonction pour calculer le prix total du panier en créant un élément p qui ira en dessous de la class total qui contient un h2 et qui contiendra le prix total
-function prixTotal(){
+async function prixTotal(){
     // on crée les constantes pour récupérer les éléments dont on a besoin, on crée une variable qui contiendra le prix total et on crée une boucle pour récupérer le prix de chaque article et le multiplier par sa quantité
     const total = document.querySelector('.total')
     // on crée l'élément p dans la class total qui contiendra le prix total
@@ -14,18 +11,31 @@ function prixTotal(){
         p = document.createElement('p')
         total.appendChild(p)
     }
-    
-    productInLocalStorage.forEach(async (el) => {
+
+    const prices = []
+    for (const el of productInLocalStorage) {
         const recup = await fetch(`http://localhost:3000/api/products/${el.productId}`)
         const datas = await recup.json()
         const index = datas.declinaisons.findIndex(item => item.taille === el.format)
-        Totalprice += datas.declinaisons[index].prix * el.quantity
-        totalQuantity = el.quantity
-    })
+        prices.push({
+            productId: el.productId,
+            totalPrice: datas.declinaisons[index].prix * el.quantity,
+            quantity: el.quantity
+        })
+    }
+
+    // on calcule le prix total
+    let totalQuantity = 0
+    let totalprice = 0
+    prices.forEach((el) => {
+        totalQuantity += el.quantity
+        totalprice += el.totalPrice
+    });
+
     // on arrondit à 2 chiffres après la virgule le prix total
-    Totalprice = Math.round(Totalprice * 100) / 100
+    totalprice = Math.round(totalprice * 100) / 100
     // on écrit la quantité d'article commandé et le prix total
-    p.textContent = `${totalQuantity} article(s) dans votre panier pour un total de ${Totalprice} €`
+    p.textContent = `${totalQuantity} article(s) dans votre panier pour un total de ${totalprice} €`
 }
 
 if(productInLocalStorage.length > 0){
@@ -74,7 +84,7 @@ if(productInLocalStorage.length > 0){
                     alert("Vous ne pouvez pas introduire un nombre négatif")
                     // on laisse la quantité à laquelle elle était avant
                     e.target.value = currentQuantity
-                }else if(newQuantity == 0){
+                } else if (newQuantity === 0){
                     el.closest('tr').remove()
                     productInLocalStorage.splice(newIndex, 1)
                     localStorage.setItem("product", JSON.stringify(productInLocalStorage))

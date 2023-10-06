@@ -61,9 +61,12 @@ buy.addEventListener("click", () => {
         } else { // s'il n'y a pas de produit dans le local storage
             productInLocalStorage.push(optionsProduct)
         }
+        showModal("Produit ajouté au panier");
         localStorage.setItem("product", JSON.stringify(productInLocalStorage))
         numberItem()
     } else {
-        alert('Vous avez commandé trop d\'exemplaire ou un nombre négatif')
+        showModal("Vous avez commandé trop d\'exemplaires ou un nombre négatif")
+
+        // alert('Vous avez commandé trop d\'exemplaire ou un nombre négatif')
     }
 })

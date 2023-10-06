@@ -190,6 +190,15 @@ figure {
     font-weight: 400;
     line-height: normal;
 }
+.total h2 {
+    color: #000;
+    text-align: end;
+    font-family: 'Rum Raisin', sans-serif;
+    font-size: 36px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
 
 .detailoeuvre article p {
     color: #000;
@@ -304,14 +313,57 @@ article > div > div.price > p {
     left: -30px;
 }
 
+.panier {
+    max-width: 1440px;
+    margin:auto;
+}
+table {
+    table-layout: fixed;
+    width: 100%;
+    border-collapse: collapse;
+}
+.titre {
+    color: #000;
+    font-family: Rum Raisin;
+    font-size: 28px;
+    font-weight: 400;
+}
+.quantite {
+    width: 60px;
+    height: 48px;
+    text-align-last: center;
+    margin-left: 10px;
+}
+.supprimer {
+    color: #000;
+    padding: 20px 0;
+}
+td, .format {
+    color: #000;
+    font-family: Source Sans 3;
+    font-size: 16px;
+    font-weight: 400;
+    padding: 20px 0;
+}
+.formulaireDeCommande{
+    max-width: 1440px;
+    margin:auto;
+    margin-top: 150px;
+}
 .form-container {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 10px;
+    row-gap: 20px;
+    column-gap: 50px;
+    margin-top: 50px;
+}
+form input {
+    height: 50px;
 }
 .form-container div {
     display: flex;
     flex-direction: column;
+    gap: 10px;
 }
 form input[type="email"] {
     grid-column: span 1;
@@ -319,5 +371,26 @@ form input[type="email"] {
 .form-submit {
     grid-column: span 2;
     text-align: center;
+    width: 100%;
+    margin: auto;
 }
-
+label {
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 32px;
+    font-weight: 400;
+}
+form input[type="submit"] {
+    background-color: #EE7F43;
+    margin: 50px auto;
+    color: #fff;
+    border: none;
+    font-size: 32px;
+    font-weight: 900;
+    font-family: 'Source Sans 3', sans-serif;
+    cursor: pointer;
+    width: 300px;
+}
+.image {
+    width: 180px;
+    height: 180px;
+}
